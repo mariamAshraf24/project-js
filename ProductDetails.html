@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .details-container {
+            display: flex;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            gap: 20px;
+        }
+
+        .details-container img {
+            width: 300px;
+            height: auto;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .details-content {
+            flex: 1;
+            text-align: left;
+        }
+
+        .details-content dl {
+            margin: 0;
+        }
+
+        .details-content dt {
+            font-weight: bold;
+            margin-top: 10px;
+            color: #333;
+        }
+
+        .details-content dd {
+            margin-left: 0;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .add-to-cart {
+            background-color: #f06292;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 1rem;
+            text-transform: uppercase;
+        }
+
+        .add-to-cart:hover {
+            background-color: #ec407a;
+        }
+    </style>
+</head>
+<body>
+    <div class="details-container" id="detailsContainer">
+        <p>Loading product details...</p>
+    </div>
+
+    <script>
+        const container = document.getElementById("detailsContainer");
+
+        const params = new URLSearchParams(window.location.search);
+        const productId = params.get("id");
+
+        function fetchProductDetails() {
+            if (!productId) {
+                container.innerHTML = "<p>Invalid product ID!</p>";
+                return;
+            }
+
+            container.innerHTML = '<p>Loading...</p>'; 
+
+            fetch(`https://fakestoreapi.com/products/${productId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(product => {
+                    container.innerHTML = "";
+
+                    const detailsContainer = document.createElement("div");
+                    detailsContainer.className = "details-container";
+
+                    const image = document.createElement("img");
+                    image.src = product.image || "placeholder.jpg"; 
+                    image.alt = product.title || "Product Image";
+
+                    const detailsContent = document.createElement("div");
+                    detailsContent.className = "details-content";
+
+                    const detailsList = document.createElement("dl");
+                    detailsList.innerHTML = `
+                        <dt>Name:</dt>
+                        <dd>${product.title}</dd>
+                        <dt>Category:</dt>
+                        <dd>${product.category}</dd>
+                        <dt>Price:</dt>
+                        <dd>$${product.price}</dd>
+                        <dt>Description:</dt>
+                        <dd>${product.description}</dd>
+                    `;
+
+                    const addToCartButton = document.createElement("button");
+                    addToCartButton.className = "add-to-cart";
+                    addToCartButton.textContent = "Add to Cart";
+                    addToCartButton.addEventListener("click", () => addToCart(product));
+
+                    detailsContent.appendChild(detailsList);
+                    detailsContent.appendChild(addToCartButton);
+
+                    detailsContainer.appendChild(image);
+                    detailsContainer.appendChild(detailsContent);
+
+                    container.appendChild(detailsContainer);
+                })
+                .catch(error => {
+                    container.innerHTML = `<p>Error fetching product details: ${error.message}</p>`;
+                });
+        }
+
+        function addToCart(product) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart.push(product);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            alert(`${product.title} has been added to your cart!`);
+        }
+
+        window.addEventListener("DOMContentLoaded", fetchProductDetails);
+    </script>
+</body>
+</html>

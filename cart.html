@@ -12,7 +12,6 @@
     <title>Cart</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -96,6 +95,31 @@
             font-size: 20px;
             margin-top: 20px;
         }
+
+        .success-message-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* height: calc(100vh - 80px); */
+            /* background-color: #f4f4f4; */
+            text-align: center;
+        }
+
+        .return-link {
+            font-size: 1.2rem;
+            color: #0c0000;
+            text-decoration: none;
+            border: 1px solid #fc9f99;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .return-link:hover {
+            background-color: #fdbaa6;
+            color: #fff;
+        }
     </style>
 </head>
 
@@ -113,7 +137,7 @@
                 <div class="col-xl-6 col-lg-7">
                     <nav class="header__menu">
                         <ul class="nav-links">
-                            <li ><a href="Home.html">Home</a></li>
+                            <li><a href="Home.html">Home</a></li>
                             <li class="active"><a href="cart.html">cart</a></li>
                             <li><a href="contactUs.html">Contact Us</a></li>
                         </ul>
@@ -140,6 +164,10 @@
     </div>
 
     <script src="scriptCart.js"></script>
+
+    <div class="success-message-container">
+        <a href="endPage.html" class="return-link">Buy Now</a>
+    </div>
 </body>
 
 </html>

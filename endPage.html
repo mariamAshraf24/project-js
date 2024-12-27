@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Success</title>
+    <Style>
+
+.success-message-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 80px); 
+    background-color: #f4f4f4; 
+    text-align: center;
+}   
+
+.success-message-container h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.return-link {
+    font-size: 1.2rem;
+    color: #0c0000;
+    text-decoration: none;
+    border: 1px solid #fc9f99;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.return-link:hover {
+    background-color: #fdbaa6;
+    color: #fff;
+}
+
+    </Style>
+</head>
+<body>
+    <header class="header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-3 col-lg-2">
+                    <div class="header__logo">
+                        <a href="Home.html">
+                            <img src="images/logo.png" alt="logo">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-7">
+                    <nav class="header__menu">
+                        <ul class="nav-links">
+                            <li class="active"><a href="Home.html">Home</a></li>
+                            <li><a href="cart.html">cart</a></li>
+                            <li><a href="contactUs.html">Contact Us</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-xl-3">
+                    <div class="header__right">
+                        <ul class="header_right_widget">
+                            <li>
+                            <li><a href="#"><i class="fa-solid fa-user"></i></a></li>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="success-message-container">
+        <h1>Order Placed Successfully!</h1>
+        <a href="home.html" class="return-link">Return to Home</a>
+    </div>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>About Us</h3>
+                <p>We are a leading online store offering a wide range of products at affordable prices.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Shop</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Follow Us</h3>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <p>Address: 123 Main Street, City, Country</p>
+                <p>Email: info@store.com</p>
+                <p>Phone: +123 456 7890</p>
+            </div>
+        </div>
+
+        <button id="backToTop" class="back-to-top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+
+    </footer>
+    <script src="scriptHome.js">
+    </script>
+</body>
+</html>
